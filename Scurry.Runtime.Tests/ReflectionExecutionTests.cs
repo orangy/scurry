@@ -11,9 +11,9 @@ namespace Scurry.Runtime.Tests
     public void ExecuteInstanceTest()
     {
       var testDescriptor = new ReflectionTestDescriptor(typeof(ReflectionExecutionTestClass).GetMethod("InstanceTestFunction"));
-      var configuration = ConfigurationHelpers.CreateConfiguration(testDescriptor);
+      var configuration = SessionHelpers.CreateSession(testDescriptor);
       Assert.Equal(0, ReflectionExecutionTestClass.InstanceCount);
-      new TestSession(configuration).Execute();
+      configuration.Execute();
       Assert.Equal(1, ReflectionExecutionTestClass.InstanceCount);
     }
 
@@ -21,9 +21,9 @@ namespace Scurry.Runtime.Tests
     public void ExecuteStaticTest()
     {
       var testDescriptor = new ReflectionTestDescriptor(typeof(ReflectionExecutionTestClass).GetMethod("StaticTestFunction"));
-      var configuration = ConfigurationHelpers.CreateConfiguration(testDescriptor);
+      var configuration = SessionHelpers.CreateSession(testDescriptor);
       Assert.Equal(0, ReflectionExecutionTestClass.StaticCount);
-      new TestSession(configuration).Execute();
+      configuration.Execute();
       Assert.Equal(1, ReflectionExecutionTestClass.StaticCount);
     }
 

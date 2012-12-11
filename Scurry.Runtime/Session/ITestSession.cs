@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using Scurry.Framework;
 
 namespace Scurry.Runtime
 {
@@ -8,5 +10,6 @@ namespace Scurry.Runtime
   public interface ITestSession
   {
     void Execute();
+    IEnumerable<ITestDescriptor> EnumerateTests();
   }
 }

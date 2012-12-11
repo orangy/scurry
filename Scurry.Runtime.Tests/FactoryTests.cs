@@ -21,8 +21,8 @@ namespace Scurry.Runtime.Tests
     public void Discover()
     {
       var testDescriptor = new AnonymousTestDescriptor(TestIdentity);
-      var configuration = ConfigurationHelpers.CreateConfiguration(testDescriptor);
-      new TestSession(configuration).Execute();
+      var configuration = SessionHelpers.CreateSession(testDescriptor);
+      configuration.Execute();
     }
   }
 }

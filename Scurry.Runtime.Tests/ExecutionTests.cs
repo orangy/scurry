@@ -12,10 +12,10 @@ namespace Scurry.Runtime.Tests
     public void TestExecutes()
     {
       bool executed = false;
-      var configuration = ConfigurationHelpers.CreateConfiguration(() => { executed = true; });
+      var configuration = SessionHelpers.CreateSession(() => { executed = true; });
 
       Assert.False(executed);
-      new TestSession(configuration).Execute();
+      configuration.Execute();
       Assert.True(executed);
     }
 
@@ -25,10 +25,10 @@ namespace Scurry.Runtime.Tests
       int executed = 0;
       var test1 = new AnonymousTestDescriptor(FactoryTests.TestIdentity, testFactory => new AnonymousTestInstance(() => { executed++; }));
       var test2 = new AnonymousTestDescriptor(FactoryTests.TestIdentity, testFactory => new AnonymousTestInstance(() => { executed++; }));
-      var configuration = ConfigurationHelpers.CreateConfiguration(test1, test2);
+      var configuration = SessionHelpers.CreateSession(test1, test2);
 
       Assert.Equal(0, executed);
-      new TestSession(configuration).Execute();
+      configuration.Execute();
       Assert.Equal(2, executed);
     }
   }

@@ -13,24 +13,21 @@ namespace Scurry.Runtime.Tests
     [Fact]
     public void DiscoverTestsFromMethods()
     {
-      var configuration = ConfigurationHelpers.CreateConfiguration(new ReflectionDiscoveryService(typeof (ReflectionDiscoveryTestClass)));
-      var session = new TestSession(configuration);
+      var session = SessionHelpers.CreateSession(new ReflectionDiscoveryService(typeof (ReflectionDiscoveryTestClass)));
       Assert.Equal(2, session.EnumerateTests().Count());
     }
 
     [Fact]
     public void FailToDiscoverTestsFromOpenGenericClass()
     {
-      var configuration = ConfigurationHelpers.CreateConfiguration(() => new ReflectionDiscoveryService(typeof (ReflectionDiscoveryTestClass<>)));
-      var session = new TestSession(configuration);
+      var session = SessionHelpers.CreateSession(() => new ReflectionDiscoveryService(typeof (ReflectionDiscoveryTestClass<>)));
       Assert.Throws<TestCompositionException>(() => Assert.Equal(2, session.EnumerateTests().Count()));
     }
 
     [Fact]
     public void DiscoverTestsFromGenericClass()
     {
-      var configuration = ConfigurationHelpers.CreateConfiguration(() => new ReflectionDiscoveryService(typeof (ReflectionDiscoveryTestClass<string>)));
-      var session = new TestSession(configuration);
+      var session = SessionHelpers.CreateSession(() => new ReflectionDiscoveryService(typeof (ReflectionDiscoveryTestClass<string>)));
       Assert.Equal(1, session.EnumerateTests().Count());
     }
 

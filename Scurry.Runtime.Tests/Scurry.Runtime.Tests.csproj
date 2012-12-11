@@ -46,7 +46,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Helpers\ConfigurationHelpers.cs" />
+    <Compile Include="Helpers\SessionHelpers.cs" />
     <Compile Include="Mocks\AnonymousConfiguration.cs" />
     <Compile Include="Mocks\AnonymousDiscoveryService.cs" />
     <Compile Include="Mocks\AnonymousEnvironment.cs" />

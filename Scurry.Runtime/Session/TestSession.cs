@@ -26,7 +26,7 @@ namespace Scurry.Runtime
     {
       var discovery = environment.DiscoveryService;
       if (discovery == null)
-        throw new TestConfigurationException(string.Format("Test session environment {0} should provide test discovery service", environment.GetType()));
+        throw new TestConfigurationException(string.Format("Test session environment {0} should provide discovery service", environment.GetType()));
 
       var testDescriptors = discovery.EnumerateTests();
       if (testDescriptors == null)
@@ -46,7 +46,7 @@ namespace Scurry.Runtime
       {
         testFactoryService = environment.FactoryService;
         if (testFactoryService == null)
-          throw new TestCompositionException(string.Format("Test session environment {0} should provide test factory service", environment.GetType()));
+          throw new TestCompositionException(string.Format("Test session environment {0} should provide factory service", environment.GetType()));
       }
 
       var test = testDescriptor.CreateInstance(testFactoryService);

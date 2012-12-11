@@ -23,6 +23,7 @@ namespace Scurry.Framework.Reflection
     {
       if (myMethod.IsStatic)
         return new Static(myMethod);
+
       var type = myMethod.DeclaringType;
       var instance = factoryService.CreateInstance(type);
       return new Instance(instance, myMethod);

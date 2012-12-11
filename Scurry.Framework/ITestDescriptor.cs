@@ -16,7 +16,7 @@ namespace Scurry.Framework
     ITestIdentity Identity { get; }
 
     /// <summary>
-    /// Creates instance of test from this descriptor using provided factory to get other instances. 
+    /// Creates instance of test from this descriptor using provided factory to get other required instances. 
     /// </summary>
     /// <param name="factoryService"></param>
     /// <returns></returns>

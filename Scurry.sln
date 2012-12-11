@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Scurry.Runtime", "Scurry.Runtime\Scurry.Runtime.csproj", "{229CA09F-9B7B-4DFE-9108-0FD362238759}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Scurry.Runtime.Tests", "Scurry.Runtime.Tests\Scurry.Runtime.Tests.csproj", "{78B4D9DE-EFB3-4597-8992-43B679327FA8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Scurry.Framework", "Scurry.Framework\Scurry.Framework.csproj", "{A066013D-E420-4D9D-BF5F-00AC8E907551}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{229CA09F-9B7B-4DFE-9108-0FD362238759}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{229CA09F-9B7B-4DFE-9108-0FD362238759}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{229CA09F-9B7B-4DFE-9108-0FD362238759}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{229CA09F-9B7B-4DFE-9108-0FD362238759}.Release|Any CPU.Build.0 = Release|Any CPU
+		{78B4D9DE-EFB3-4597-8992-43B679327FA8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{78B4D9DE-EFB3-4597-8992-43B679327FA8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{78B4D9DE-EFB3-4597-8992-43B679327FA8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{78B4D9DE-EFB3-4597-8992-43B679327FA8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A066013D-E420-4D9D-BF5F-00AC8E907551}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A066013D-E420-4D9D-BF5F-00AC8E907551}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A066013D-E420-4D9D-BF5F-00AC8E907551}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A066013D-E420-4D9D-BF5F-00AC8E907551}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

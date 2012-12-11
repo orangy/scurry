@@ -24,7 +24,7 @@ namespace Scurry.Runtime
 
     private void Execute(ITestEnvironment environment)
     {
-      var discovery = environment.CreateDiscovery();
+      var discovery = environment.DiscoveryService;
       if (discovery == null)
         throw new TestConfigurationException(string.Format("Test session environment {0} should provide test discovery service", environment.GetType()));
 
@@ -32,28 +32,26 @@ namespace Scurry.Runtime
       if (testDescriptors == null)
         throw new TestCompositionException(string.Format("Test session discovery {0} should return empty enumerable instead of null", discovery.GetType()));
 
-      ITestFactory testFactory = null;
+      ITestFactoryService testFactoryService = null;
       foreach (var testDescriptor in testDescriptors)
-        Execute(environment, testDescriptor, ref testFactory);
+        Execute(environment, testDescriptor, ref testFactoryService);
     }
 
-    private static void Execute(ITestEnvironment environment, ITestDescriptor testDescriptor, ref ITestFactory testFactory)
+    private static void Execute(ITestEnvironment environment, ITestDescriptor testDescriptor, ref ITestFactoryService testFactoryService)
     {
       if (testDescriptor.Identity == null)
         throw new TestCompositionException(string.Format("Test {0} should have identity", testDescriptor.GetType()));
 
-      if (testFactory == null)
+      if (testFactoryService == null)
       {
-        testFactory = environment.CreateFactory();
-        if (testFactory == null)
+        testFactoryService = environment.FactoryService;
+        if (testFactoryService == null)
           throw new TestCompositionException(string.Format("Test session environment {0} should provide test factory service", environment.GetType()));
       }
 
-      var test = testFactory.CreateInstance(testDescriptor);
-      if (test == null)
-        return;
-
-      test.Execute();
+      var test = testDescriptor.CreateInstance(testFactoryService);
+      if (test != null)
+        test.Run();
     }
   }
 }

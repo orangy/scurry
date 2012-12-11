@@ -40,12 +40,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ITestDescriptor.cs" />
-    <Compile Include="ITestDiscovery.cs" />
+    <Compile Include="ITestDiscoveryService.cs" />
     <Compile Include="ITestEnvironment.cs" />
-    <Compile Include="ITestFactory.cs" />
+    <Compile Include="ITestFactoryService.cs" />
     <Compile Include="ITestIdentity.cs" />
     <Compile Include="ITestInstance.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Reflection\ReflectionTestClassDescriptor.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

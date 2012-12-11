@@ -5,7 +5,7 @@ using Xunit;
 
 namespace Scurry.Runtime.Tests
 {
-  public class TestEnvironment
+  public class EnvironmentTests
   {
     [Fact]
     public void FailOnNullConfiguration()
@@ -27,7 +27,7 @@ namespace Scurry.Runtime.Tests
       var configuration = new AnonymousConfiguration(() =>
       {
         created = true;
-        return new AnonymousEnvironment(() => new AnonymousDiscovery(Enumerable.Empty<ITestDescriptor>));
+        return new AnonymousEnvironment(() => new AnonymousDiscoveryService(Enumerable.Empty<ITestDescriptor>));
       });
 
       var session = new TestSession(configuration);

@@ -6,20 +6,24 @@ namespace Scurry.Runtime.Tests
   public class AnonymousTestDescriptor : ITestDescriptor
   {
     private readonly ITestIdentity myIdentity;
+    private readonly Func<ITestFactoryService, ITestInstance> myFactory;
 
-    public AnonymousTestDescriptor(ITestIdentity identity)
+    public AnonymousTestDescriptor(ITestIdentity identity = null, Func<ITestFactoryService, ITestInstance> factory = null)
     {
       myIdentity = identity;
-    }
-
-    public ITestDescriptor Container
-    {
-      get { return null; }
+      myFactory = factory;
     }
 
     public ITestIdentity Identity
     {
       get { return myIdentity; }
+    }
+
+    public ITestInstance CreateInstance(ITestFactoryService factoryService)
+    {
+      if (myFactory != null)
+        return myFactory(factoryService);
+      return null;
     }
   }
 }

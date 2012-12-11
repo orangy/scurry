@@ -1,18 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using Scurry.Framework;
 
-namespace Scurry.Framework
+namespace Scurry.Runtime.Tests
 {
-  public interface ITestDiscovery
-  {
-    IEnumerable<ITestDescriptor> EnumerateTests();
-  }
-
-  public class AnonymousDiscovery : ITestDiscovery
+  public class AnonymousDiscoveryService : ITestDiscoveryService
   {
     private readonly Func<IEnumerable<ITestDescriptor>> myTests;
 
-    public AnonymousDiscovery(Func<IEnumerable<ITestDescriptor>> tests)
+    public AnonymousDiscoveryService(Func<IEnumerable<ITestDescriptor>> tests)
     {
       myTests = tests;
     }

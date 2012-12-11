@@ -5,27 +5,33 @@ namespace Scurry.Runtime.Tests
 {
   public class AnonymousEnvironment : ITestEnvironment
   {
-    private readonly Func<ITestDiscovery> myDiscoveryFactory;
-    private readonly Func<ITestFactory> myFactory;
+    private readonly Func<ITestDiscoveryService> myDiscoveryFactory;
+    private readonly Func<ITestFactoryService> myFactory;
 
-    public AnonymousEnvironment(Func<ITestDiscovery> discovery = null, Func<ITestFactory> factory = null)
+    public AnonymousEnvironment(Func<ITestDiscoveryService> discovery = null, Func<ITestFactoryService> factory = null)
     {
       myDiscoveryFactory = discovery;
       myFactory = factory;
     }
 
-    public ITestDiscovery CreateDiscovery()
+    public ITestDiscoveryService DiscoveryService
     {
-      if (myDiscoveryFactory != null)
-        return myDiscoveryFactory();
-      return null;
+      get
+      {
+        if (myDiscoveryFactory != null)
+          return myDiscoveryFactory();
+        return null;
+      }
     }
 
-    public ITestFactory CreateFactory()
+    public ITestFactoryService FactoryService
     {
-      if (myFactory != null)
-        return myFactory();
-      return null;
+      get
+      {
+        if (myFactory != null)
+          return myFactory();
+        return null;
+      }
     }
   }
 }

@@ -46,15 +46,20 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Helpers\ConfigurationHelpers.cs" />
     <Compile Include="Mocks\AnonymousConfiguration.cs" />
+    <Compile Include="Mocks\AnonymousDiscoveryService.cs" />
     <Compile Include="Mocks\AnonymousEnvironment.cs" />
-    <Compile Include="Mocks\AnonymousFactory.cs" />
+    <Compile Include="Mocks\AnonymousFactoryService.cs" />
+    <Compile Include="Mocks\AnonymousTestInstance.cs" />
     <Compile Include="Mocks\AnonymousTestDescriptor.cs" />
     <Compile Include="Mocks\StringTestIdentity.cs" />
-    <Compile Include="TestEnvironment.cs" />
+    <Compile Include="EnvironmentTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TestDiscovery.cs" />
-    <Compile Include="TestFactory.cs" />
+    <Compile Include="DiscoveryTests.cs" />
+    <Compile Include="ExecutionTests.cs" />
+    <Compile Include="FactoryTests.cs" />
+    <Compile Include="ReflectionExecution.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

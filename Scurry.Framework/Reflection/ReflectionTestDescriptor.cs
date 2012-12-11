@@ -28,7 +28,24 @@ namespace Scurry.Framework.Reflection
       return new Instance(instance, myMethod);
     }
 
-    public class Static : ITestInstance
+    private class Instance : ITestInstance
+    {
+      private readonly object myInstance;
+      private readonly MethodInfo myMethod;
+
+      public Instance(object instance, MethodInfo method)
+      {
+        myInstance = instance;
+        myMethod = method;
+      }
+
+      public void Run()
+      {
+        myMethod.Invoke(myInstance, new object[0]);
+      }
+    }
+
+    private class Static : ITestInstance
     {
       private readonly MethodInfo myMethod;
 
@@ -41,23 +58,6 @@ namespace Scurry.Framework.Reflection
       {
         myMethod.Invoke(null, new object[0]);
       }
-    }
-  }
-
-  public class Instance : ITestInstance
-  {
-    private readonly object myInstance;
-    private readonly MethodInfo myMethod;
-
-    public Instance(object instance, MethodInfo method)
-    {
-      myInstance = instance;
-      myMethod = method;
-    }
-
-    public void Run()
-    {
-      myMethod.Invoke(myInstance, new object[0]);
     }
   }
 }

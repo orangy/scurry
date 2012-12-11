@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Scurry.Runtime
+namespace Scurry.Framework
 {
   /// <summary>
   /// There was an issue with test composition

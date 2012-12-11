@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Scurry.Framework;
 
 namespace Scurry.Runtime
@@ -16,21 +17,8 @@ namespace Scurry.Runtime
 
     public void Execute()
     {
-      var environment = myConfiguration.CreateEnvironment();
-      if (environment == null)
-        throw new TestConfigurationException(string.Format("Test session configuration {0} should provide environment", myConfiguration.GetType()));
-      Execute(environment);
-    }
-
-    private void Execute(ITestEnvironment environment)
-    {
-      var discovery = environment.DiscoveryService;
-      if (discovery == null)
-        throw new TestConfigurationException(string.Format("Test session environment {0} should provide discovery service", environment.GetType()));
-
-      var testDescriptors = discovery.EnumerateTests();
-      if (testDescriptors == null)
-        throw new TestCompositionException(string.Format("Test session discovery {0} should return empty enumerable instead of null", discovery.GetType()));
+      var environment = CreateEnvironment();
+      var testDescriptors = EnumerateTests(environment);
 
       ITestFactoryService testFactoryService = null;
       foreach (var testDescriptor in testDescriptors)
@@ -52,6 +40,32 @@ namespace Scurry.Runtime
       var test = testDescriptor.CreateInstance(testFactoryService);
       if (test != null)
         test.Run();
+    }
+
+    public IEnumerable<ITestDescriptor> EnumerateTests()
+    {
+      var environment = CreateEnvironment();
+      return EnumerateTests(environment);
+    }
+
+    private IEnumerable<ITestDescriptor> EnumerateTests(ITestEnvironment environment)
+    {
+      var discovery = environment.DiscoveryService;
+      if (discovery == null)
+        throw new TestConfigurationException(string.Format("Test session environment {0} should provide discovery service", environment.GetType()));
+
+      var testDescriptors = discovery.EnumerateTests();
+      if (testDescriptors == null)
+        throw new TestCompositionException(string.Format("Test session discovery {0} should return empty enumerable instead of null", discovery.GetType()));
+      return testDescriptors;
+    }
+
+    private ITestEnvironment CreateEnvironment()
+    {
+      var environment = myConfiguration.CreateEnvironment();
+      if (environment == null)
+        throw new TestConfigurationException(string.Format("Test session configuration {0} should provide environment", myConfiguration.GetType()));
+      return environment;
     }
   }
 }

@@ -59,8 +59,8 @@
     <Compile Include="DiscoveryTests.cs" />
     <Compile Include="ExecutionTests.cs" />
     <Compile Include="FactoryTests.cs" />
-    <Compile Include="ReflectionDiscovery.cs" />
-    <Compile Include="ReflectionExecution.cs" />
+    <Compile Include="ReflectionDiscoveryTests.cs" />
+    <Compile Include="ReflectionExecutionTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

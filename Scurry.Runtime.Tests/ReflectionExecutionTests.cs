@@ -5,7 +5,7 @@ using Xunit;
 
 namespace Scurry.Runtime.Tests
 {
-  public class ReflectionExecution
+  public class ReflectionExecutionTests
   {
     [Fact]
     public void ExecuteInstanceTest()

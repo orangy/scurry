@@ -39,8 +39,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Session\TestCompositionException.cs" />
-    <Compile Include="Session\TestConfigurationException.cs" />
     <Compile Include="Session\ITestSession.cs" />
     <Compile Include="Configuration\ITestSessionConfiguration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

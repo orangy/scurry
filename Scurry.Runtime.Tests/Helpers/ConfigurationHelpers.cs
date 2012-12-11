@@ -18,6 +18,13 @@ namespace Scurry.Runtime.Tests.Helpers
       return new AnonymousConfiguration(() => environment);
     }
 
+    public static AnonymousConfiguration CreateConfiguration(Func<ITestDiscoveryService> discoveryService)
+    {
+      var factoryService = new AnonymousFactoryService(Activator.CreateInstance);
+      var environment = new AnonymousEnvironment(discoveryService, () => factoryService);
+      return new AnonymousConfiguration(() => environment);
+    }
+
     public static AnonymousConfiguration CreateConfiguration(Action action)
     {
       var testDescriptor = new AnonymousTestDescriptor(FactoryTests.TestIdentity, testFactory => new AnonymousTestInstance(action));

@@ -19,7 +19,7 @@ namespace Scurry.Runtime.Tests.NUnit
     [Fact]
     public void ExecuteTests()
     {
-      var session = SessionHelpers.CreateSession(new NUnitTestDiscoveryService(typeof (NunitExecutionTestClass)));
+      var session = SessionHelpers.CreateSession(new NUnitTestEnvironment(typeof (NunitExecutionTestClass)));
       Tests = 0;
       session.Execute();
       Assert.Equal(2, Tests);
@@ -28,7 +28,7 @@ namespace Scurry.Runtime.Tests.NUnit
     [Fact]
     public void ExecuteInheritedTests()
     {
-      var session = SessionHelpers.CreateSession(new NUnitTestDiscoveryService(typeof (NunitExecutionTestClass2)));
+      var session = SessionHelpers.CreateSession(new NUnitTestEnvironment(typeof(NunitExecutionTestClass2)));
       Tests = 0;
       session.Execute();
       Assert.Equal(2, Tests);
@@ -37,7 +37,7 @@ namespace Scurry.Runtime.Tests.NUnit
     [Fact]
     public void ExecuteSetups()
     {
-      var session = SessionHelpers.CreateSession(new NUnitTestDiscoveryService(typeof (NunitExecutionTestClass)));
+      var session = SessionHelpers.CreateSession(new NUnitTestEnvironment(typeof(NunitExecutionTestClass)));
       Setup = 0;
       session.Execute();
       Assert.Equal(2, Setup);
@@ -46,7 +46,7 @@ namespace Scurry.Runtime.Tests.NUnit
     [Fact]
     public void ExecuteConstructors()
     {
-      var session = SessionHelpers.CreateSession(new NUnitTestDiscoveryService(typeof (NunitExecutionTestClass)));
+      var session = SessionHelpers.CreateSession(new NUnitTestEnvironment(typeof(NunitExecutionTestClass)));
       Constructor = 0;
       session.Execute();
       Assert.Equal(1, Constructor);
@@ -55,7 +55,7 @@ namespace Scurry.Runtime.Tests.NUnit
     [Fact]
     public void ExecuteTeardowns()
     {
-      var session = SessionHelpers.CreateSession(new NUnitTestDiscoveryService(typeof (NunitExecutionTestClass)));
+      var session = SessionHelpers.CreateSession(new NUnitTestEnvironment(typeof(NunitExecutionTestClass)));
       Teardown = 0;
       session.Execute();
       Assert.Equal(2, Teardown);
@@ -64,7 +64,7 @@ namespace Scurry.Runtime.Tests.NUnit
     [Fact]
     public void ExecuteFixtureSetups()
     {
-      var session = SessionHelpers.CreateSession(new NUnitTestDiscoveryService(typeof (NunitExecutionTestClass)));
+      var session = SessionHelpers.CreateSession(new NUnitTestEnvironment(typeof(NunitExecutionTestClass)));
       FixtureSetup = 0;
       session.Execute();
       Assert.Equal(1, FixtureSetup);
@@ -73,7 +73,7 @@ namespace Scurry.Runtime.Tests.NUnit
     [Fact]
     public void ExecuteFixtureTeardowns()
     {
-      var session = SessionHelpers.CreateSession(new NUnitTestDiscoveryService(typeof (NunitExecutionTestClass)));
+      var session = SessionHelpers.CreateSession(new NUnitTestEnvironment(typeof(NunitExecutionTestClass)));
       FixtureTeardown = 0;
       session.Execute();
       Assert.Equal(1, FixtureTeardown);
@@ -82,7 +82,7 @@ namespace Scurry.Runtime.Tests.NUnit
     [Fact]
     public void ExecuteAssembly()
     {
-      var session = SessionHelpers.CreateSession(new NUnitTestDiscoveryService(typeof(OuterFixture).Assembly));
+      var session = SessionHelpers.CreateSession(new NUnitTestEnvironment(typeof(OuterFixture).Assembly));
       session.Execute();
     }
 

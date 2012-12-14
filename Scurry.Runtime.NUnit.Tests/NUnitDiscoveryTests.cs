@@ -14,7 +14,7 @@ namespace Scurry.Runtime.Tests.NUnit
     [Fact]
     public void DiscoverTestsFromType()
     {
-      var session = SessionHelpers.CreateSession(new NUnitTestDiscoveryService(typeof (NUnitDiscoveryTestClass)));
+      var session = SessionHelpers.CreateSession(new NUnitTestEnvironment(typeof (NUnitDiscoveryTestClass)));
       var testGraph = session.CreateTestGraph();
       Assert.Equal(1, testGraph.Count());
       Assert.Equal(1, testGraph.Single().Children.Count());
@@ -23,7 +23,7 @@ namespace Scurry.Runtime.Tests.NUnit
     [Fact]
     public void DiscoverTestsFromAssembly()
     {
-      var session = SessionHelpers.CreateSession(new NUnitTestDiscoveryService(typeof(OuterFixture).Assembly));
+      var session = SessionHelpers.CreateSession(new NUnitTestEnvironment(typeof(OuterFixture).Assembly));
       var testGraph = session.CreateTestGraph();
       Assert.Equal(2, testGraph.Count());
     }

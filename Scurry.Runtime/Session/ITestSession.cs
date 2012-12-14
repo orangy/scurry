@@ -10,6 +10,6 @@ namespace Scurry.Runtime
   public interface ITestSession
   {
     void Execute();
-    IEnumerable<ITestDescriptor> EnumerateTests();
+    IEnumerable<ITestDescriptor> CreateTestGraph();
   }
 }

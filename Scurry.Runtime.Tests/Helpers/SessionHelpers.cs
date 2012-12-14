@@ -17,7 +17,11 @@ namespace Scurry.Runtime.Tests.Helpers
 
     public static ITestSession CreateSession(Action action)
     {
-      return CreateSession(new AnonymousTestDescriptor(FactoryTests.TestIdentity, testFactory => new AnonymousTestInstance(action)));
+      return CreateSession(new AnonymousTestDescriptor(FactoryTests.TestIdentity, testFactory =>
+      {
+        action();
+        return null;
+      }));
     }
 
     public static ITestSession CreateSession(Func<ITestDiscoveryService> discoveryService)

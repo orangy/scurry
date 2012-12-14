@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Scurry.Framework
 {
@@ -16,10 +17,14 @@ namespace Scurry.Framework
     ITestIdentity Identity { get; }
 
     /// <summary>
-    /// Creates instance of test from this descriptor using provided factory to get other required instances. 
+    /// Executes descriptor in the given context. Can provide context for children execution.
     /// </summary>
-    /// <param name="factoryService"></param>
-    /// <returns></returns>
-    ITestInstance CreateInstance(ITestFactoryService factoryService);
+    /// <param name="context">Context for test execution</param>
+    /// <returns>Nested context for children, or null</returns>
+    ITestContext Execute(ITestContext context);
+
+    ITestDescriptor Container { get; }
+
+    IEnumerable<ITestDescriptor> Children { get; }
   }
 }

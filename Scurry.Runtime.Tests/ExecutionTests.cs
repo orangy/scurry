@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Linq;
-using Scurry.Framework;
 using Scurry.Runtime.Tests.Helpers;
 using Xunit;
 
@@ -23,8 +21,16 @@ namespace Scurry.Runtime.Tests
     public void TwoTestsExecutes()
     {
       int executed = 0;
-      var test1 = new AnonymousTestDescriptor(FactoryTests.TestIdentity, testFactory => new AnonymousTestInstance(() => { executed++; }));
-      var test2 = new AnonymousTestDescriptor(FactoryTests.TestIdentity, testFactory => new AnonymousTestInstance(() => { executed++; }));
+      var test1 = new AnonymousTestDescriptor(FactoryTests.TestIdentity, factoryService =>
+      {
+        executed++;
+        return null;
+      });
+      var test2 = new AnonymousTestDescriptor(FactoryTests.TestIdentity, factoryService =>
+      {
+        executed++;
+        return null;
+      });
       var configuration = SessionHelpers.CreateSession(test1, test2);
 
       Assert.Equal(0, executed);

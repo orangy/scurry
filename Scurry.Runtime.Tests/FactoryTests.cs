@@ -11,10 +11,17 @@ namespace Scurry.Runtime.Tests
     [Fact]
     public void FailOnNullFactory()
     {
-      var discovery = new AnonymousDiscoveryService(() => new[] {new AnonymousTestDescriptor(TestIdentity)});
+      var discovery = new AnonymousDiscoveryService(() => new[]
+      {
+        new AnonymousTestDescriptor(TestIdentity, context =>
+        {
+          context.CreateInstance(typeof (object));
+          return null;
+        })
+      });
       var environment = new AnonymousEnvironment(() => discovery, null);
       var configuration = new AnonymousConfiguration(() => environment);
-      Assert.Throws<TestCompositionException>(() => new TestSession(configuration).Execute());
+      Assert.Throws<TestConfigurationException>(() => new TestSession(configuration).Execute());
     }
 
     [Fact]

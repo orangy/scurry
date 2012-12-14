@@ -44,10 +44,12 @@
     <Compile Include="ITestEnvironment.cs" />
     <Compile Include="ITestFactoryService.cs" />
     <Compile Include="ITestIdentity.cs" />
-    <Compile Include="ITestInstance.cs" />
+    <Compile Include="ITestContext.cs" />
+    <Compile Include="NUnit\NUnitTestDescriptor.cs" />
+    <Compile Include="NUnit\NUnitTestDiscoveryService.cs" />
+    <Compile Include="NUnit\NUnitTestFixtureDescriptor.cs" />
+    <Compile Include="NUnit\SpecialMethodKind.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Reflection\ReflectionDiscoveryService.cs" />
-    <Compile Include="Reflection\ReflectionTestDescriptor.cs" />
     <Compile Include="TestCompositionException.cs" />
     <Compile Include="TestConfigurationException.cs" />
   </ItemGroup>

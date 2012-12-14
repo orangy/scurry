@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Scurry.Framework;
 
 namespace Scurry.Runtime.Tests
@@ -6,12 +7,12 @@ namespace Scurry.Runtime.Tests
   public class AnonymousTestDescriptor : ITestDescriptor
   {
     private readonly ITestIdentity myIdentity;
-    private readonly Func<ITestFactoryService, ITestInstance> myFactory;
+    private readonly Func<ITestContext, ITestContext> myExecute;
 
-    public AnonymousTestDescriptor(ITestIdentity identity = null, Func<ITestFactoryService, ITestInstance> factory = null)
+    public AnonymousTestDescriptor(ITestIdentity identity = null, Func<ITestContext, ITestContext> execute = null)
     {
       myIdentity = identity;
-      myFactory = factory;
+      myExecute = execute;
     }
 
     public ITestIdentity Identity
@@ -19,11 +20,19 @@ namespace Scurry.Runtime.Tests
       get { return myIdentity; }
     }
 
-    public ITestInstance CreateInstance(ITestFactoryService factoryService)
+    public ITestContext Execute(ITestContext context)
     {
-      if (myFactory != null)
-        return myFactory(factoryService);
-      return null;
+      return myExecute != null ? myExecute(context) : null;
+    }
+
+    public ITestDescriptor Container
+    {
+      get { return null; }
+    }
+
+    public IEnumerable<ITestDescriptor> Children
+    {
+      get { yield break; }
     }
   }
 }

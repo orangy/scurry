@@ -39,6 +39,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Session\EnvironmentTestContext.cs" />
     <Compile Include="Session\ITestSession.cs" />
     <Compile Include="Configuration\ITestSessionConfiguration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

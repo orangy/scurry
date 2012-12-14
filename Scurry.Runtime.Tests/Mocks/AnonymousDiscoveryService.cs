@@ -13,7 +13,7 @@ namespace Scurry.Runtime.Tests
       myTests = tests;
     }
 
-    public IEnumerable<ITestDescriptor> EnumerateTests()
+    public IEnumerable<ITestDescriptor> CreateTestGraph()
     {
       return myTests();
     }

@@ -18,43 +18,38 @@ namespace Scurry.Runtime
     public void Execute()
     {
       var environment = CreateEnvironment();
-      var testDescriptors = EnumerateTests(environment);
+      var testDescriptors = CreateTestGraph(environment);
 
-      ITestFactoryService testFactoryService = null;
       foreach (var testDescriptor in testDescriptors)
-        Execute(environment, testDescriptor, ref testFactoryService);
+        Execute(new EnvironmentTestContext(environment), testDescriptor);
     }
 
-    private static void Execute(ITestEnvironment environment, ITestDescriptor testDescriptor, ref ITestFactoryService testFactoryService)
+    private static void Execute(ITestContext parentContext, ITestDescriptor testDescriptor)
     {
       if (testDescriptor.Identity == null)
         throw new TestCompositionException(string.Format("Test {0} should have identity", testDescriptor.GetType()));
 
-      if (testFactoryService == null)
-      {
-        testFactoryService = environment.FactoryService;
-        if (testFactoryService == null)
-          throw new TestCompositionException(string.Format("Test session environment {0} should provide factory service", environment.GetType()));
-      }
-
-      var test = testDescriptor.CreateInstance(testFactoryService);
-      if (test != null)
-        test.Run();
+      var context = testDescriptor.Execute(parentContext);
+      foreach (var childDescriptor in testDescriptor.Children)
+        Execute(context, childDescriptor);
+      var disposable = context as IDisposable;
+      if (disposable != null)
+        disposable.Dispose();
     }
 
-    public IEnumerable<ITestDescriptor> EnumerateTests()
+    public IEnumerable<ITestDescriptor> CreateTestGraph()
     {
       var environment = CreateEnvironment();
-      return EnumerateTests(environment);
+      return CreateTestGraph(environment);
     }
 
-    private IEnumerable<ITestDescriptor> EnumerateTests(ITestEnvironment environment)
+    private IEnumerable<ITestDescriptor> CreateTestGraph(ITestEnvironment environment)
     {
       var discovery = environment.DiscoveryService;
       if (discovery == null)
         throw new TestConfigurationException(string.Format("Test session environment {0} should provide discovery service", environment.GetType()));
 
-      var testDescriptors = discovery.EnumerateTests();
+      var testDescriptors = discovery.CreateTestGraph();
       if (testDescriptors == null)
         throw new TestCompositionException(string.Format("Test session discovery {0} should return empty enumerable instead of null", discovery.GetType()));
       return testDescriptors;

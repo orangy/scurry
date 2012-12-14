@@ -11,6 +11,6 @@ namespace Scurry.Framework
   /// </remarks>
   public interface ITestDiscoveryService
   {
-    IEnumerable<ITestDescriptor> EnumerateTests();
+    IEnumerable<ITestDescriptor> CreateTestGraph();
   }
 }

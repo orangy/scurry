@@ -1,5 +1,6 @@
+using System.Linq;
 using NUnit.Framework;
-using Scurry.Framework.NUnit;
+using Scurry.Runtime.NUnit;
 using Scurry.Runtime.Tests.Helpers;
 using Xunit;
 using Assert = Xunit.Assert;
@@ -78,6 +79,14 @@ namespace Scurry.Runtime.Tests.NUnit
       Assert.Equal(1, FixtureTeardown);
     }
 
+    [Fact]
+    public void ExecuteAssembly()
+    {
+      var session = SessionHelpers.CreateSession(new NUnitTestDiscoveryService(typeof(OuterFixture).Assembly));
+      session.Execute();
+    }
+
+
     private static void CountTests()
     {
       Tests++;
@@ -109,7 +118,7 @@ namespace Scurry.Runtime.Tests.NUnit
     }
 
     [TestFixture]
-    public class NunitExecutionTestClass
+    private class NunitExecutionTestClass
     {
       public NunitExecutionTestClass()
       {
@@ -159,7 +168,7 @@ namespace Scurry.Runtime.Tests.NUnit
       }
     }
 
-    public class NunitExecutionTestClass2 : NunitExecutionTestClass
+    private class NunitExecutionTestClass2 : NunitExecutionTestClass
     {
        
     }

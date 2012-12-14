@@ -7,6 +7,14 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Scurry.Runtime.Tests", "Scu
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Scurry.Framework", "Scurry.Framework\Scurry.Framework.csproj", "{A066013D-E420-4D9D-BF5F-00AC8E907551}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Scurry.Console", "Scurry.Console\Scurry.Console.csproj", "{621268BD-190B-4000-BB9A-26AACBDC6E45}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Scurry.Runtime.NUnit", "Scurry.Runtime.NUnit\Scurry.Runtime.NUnit.csproj", "{2413B42E-CE14-4BD2-B8DE-B591C2EF7C3F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NUnit", "NUnit", "{1D3C889B-9584-4EED-8E35-D7B99FB67EEE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Scurry.Runtime.NUnit.Tests", "Scurry.Runtime.NUnit.Tests\Scurry.Runtime.NUnit.Tests.csproj", "{5B671C41-B285-4850-8E36-DFB08968E820}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -25,8 +33,24 @@ Global
 		{A066013D-E420-4D9D-BF5F-00AC8E907551}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A066013D-E420-4D9D-BF5F-00AC8E907551}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A066013D-E420-4D9D-BF5F-00AC8E907551}.Release|Any CPU.Build.0 = Release|Any CPU
+		{621268BD-190B-4000-BB9A-26AACBDC6E45}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{621268BD-190B-4000-BB9A-26AACBDC6E45}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{621268BD-190B-4000-BB9A-26AACBDC6E45}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{621268BD-190B-4000-BB9A-26AACBDC6E45}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2413B42E-CE14-4BD2-B8DE-B591C2EF7C3F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2413B42E-CE14-4BD2-B8DE-B591C2EF7C3F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2413B42E-CE14-4BD2-B8DE-B591C2EF7C3F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2413B42E-CE14-4BD2-B8DE-B591C2EF7C3F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5B671C41-B285-4850-8E36-DFB08968E820}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5B671C41-B285-4850-8E36-DFB08968E820}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5B671C41-B285-4850-8E36-DFB08968E820}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5B671C41-B285-4850-8E36-DFB08968E820}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{2413B42E-CE14-4BD2-B8DE-B591C2EF7C3F} = {1D3C889B-9584-4EED-8E35-D7B99FB67EEE}
+		{5B671C41-B285-4850-8E36-DFB08968E820} = {1D3C889B-9584-4EED-8E35-D7B99FB67EEE}
 	EndGlobalSection
 EndGlobal

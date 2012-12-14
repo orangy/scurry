@@ -1,8 +1,9 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Reflection;
+using Scurry.Framework;
 
-namespace Scurry.Framework.NUnit
+namespace Scurry.Runtime.NUnit
 {
   public class NUnitTestDescriptor : ITestDescriptor, ITestIdentity
   {

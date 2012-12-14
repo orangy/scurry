@@ -1,6 +1,6 @@
-﻿using System;
+using System;
 
-namespace Scurry.Framework.NUnit
+namespace Scurry.Runtime.NUnit
 {
   public enum SpecialMethodKind
   {

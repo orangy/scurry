@@ -32,11 +32,6 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ITestDescriptor.cs" />
@@ -45,13 +40,12 @@
     <Compile Include="ITestFactoryService.cs" />
     <Compile Include="ITestIdentity.cs" />
     <Compile Include="ITestContext.cs" />
-    <Compile Include="NUnit\NUnitTestDescriptor.cs" />
-    <Compile Include="NUnit\NUnitTestDiscoveryService.cs" />
-    <Compile Include="NUnit\NUnitTestFixtureDescriptor.cs" />
-    <Compile Include="NUnit\SpecialMethodKind.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TestCompositionException.cs" />
     <Compile Include="TestConfigurationException.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="NUnit\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

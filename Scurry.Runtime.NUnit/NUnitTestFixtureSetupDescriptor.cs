@@ -1,16 +1,17 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Reflection;
+using Scurry.Framework;
 
-namespace Scurry.Framework.NUnit
+namespace Scurry.Runtime.NUnit
 {
-  public class NUnitTestFixtureDescriptor : ITestDescriptor, ITestIdentity
+  public class NUnitTestFixtureSetupDescriptor : ITestDescriptor, ITestIdentity
   {
     private readonly Type myType;
-    private readonly List<NUnitTestDescriptor> myTests = new List<NUnitTestDescriptor>();
+    private readonly List<ITestDescriptor> myChildren = new List<ITestDescriptor>();
     private readonly Dictionary<SpecialMethodKind, MethodInfo> mySpecialMethods = new Dictionary<SpecialMethodKind, MethodInfo>();
 
-    public NUnitTestFixtureDescriptor(Type type)
+    public NUnitTestFixtureSetupDescriptor(Type type)
     {
       myType = type;
     }
@@ -32,15 +33,15 @@ namespace Scurry.Framework.NUnit
 
     public IEnumerable<ITestDescriptor> Children
     {
-      get { return myTests; }
+      get { return myChildren; }
     }
 
-    public void AddTest(NUnitTestDescriptor descriptor)
+    public void AddChild(ITestDescriptor descriptor)
     {
-      myTests.Add(descriptor);
+      myChildren.Add(descriptor);
     }
 
-    public class Context : ITestContext, IDisposable
+    private class Context : ITestContext, IDisposable
     {
       private readonly ITestContext myParentContext;
       private readonly Dictionary<SpecialMethodKind, MethodInfo> mySpecialMethods;
@@ -52,7 +53,7 @@ namespace Scurry.Framework.NUnit
         mySpecialMethods = specialMethods;
         myValue = CreateInstance(type);
         MethodInfo methodInfo;
-        if (mySpecialMethods.TryGetValue(SpecialMethodKind.FixtureSetup, out methodInfo))
+        if (mySpecialMethods.TryGetValue(SpecialMethodKind.Setup, out methodInfo))
           methodInfo.Invoke(myValue, new object[0]);
       }
 
@@ -66,24 +67,10 @@ namespace Scurry.Framework.NUnit
         return myParentContext.CreateInstance(type);
       }
 
-      public void TestSetup()
-      {
-        MethodInfo methodInfo;
-        if (mySpecialMethods.TryGetValue(SpecialMethodKind.Setup, out methodInfo))
-          methodInfo.Invoke(myValue, new object[0]);
-      }
-
-      public void TestTeardown()
-      {
-        MethodInfo methodInfo;
-        if (mySpecialMethods.TryGetValue(SpecialMethodKind.Teardown, out methodInfo))
-          methodInfo.Invoke(myValue, new object[0]);
-      }
-
       public void Dispose()
       {
         MethodInfo methodInfo;
-        if (mySpecialMethods.TryGetValue(SpecialMethodKind.FixtureTeardown, out methodInfo))
+        if (mySpecialMethods.TryGetValue(SpecialMethodKind.Teardown, out methodInfo))
           methodInfo.Invoke(myValue, new object[0]);
       }
     }

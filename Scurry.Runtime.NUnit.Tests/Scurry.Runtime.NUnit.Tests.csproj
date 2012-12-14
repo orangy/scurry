@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{78B4D9DE-EFB3-4597-8992-43B679327FA8}</ProjectGuid>
+    <ProjectGuid>{5B671C41-B285-4850-8E36-DFB08968E820}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Scurry.Runtime.Tests</RootNamespace>
-    <AssemblyName>Scurry.Runtime.Tests</AssemblyName>
+    <RootNamespace>Scurry.Runtime.NUnit.Tests</RootNamespace>
+    <AssemblyName>Scurry.Runtime.NUnit.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -30,40 +30,39 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="nunit.framework">
+      <HintPath>..\Frameworks\nunit.framework.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="xunit">
-      <HintPath>..\packages\xunit.1.9.1\lib\net20\xunit.dll</HintPath>
+      <HintPath>..\Scurry.Runtime.Tests\bin\Debug\xunit.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Helpers\SessionHelpers.cs" />
-    <Compile Include="Mocks\AnonymousConfiguration.cs" />
-    <Compile Include="Mocks\AnonymousDiscoveryService.cs" />
-    <Compile Include="Mocks\AnonymousEnvironment.cs" />
-    <Compile Include="Mocks\AnonymousFactoryService.cs" />
-    <Compile Include="Mocks\AnonymousTestDescriptor.cs" />
-    <Compile Include="Mocks\StringTestIdentity.cs" />
-    <Compile Include="EnvironmentTests.cs" />
+    <Compile Include="FixtureDen\SetupFixture.cs" />
+    <Compile Include="NUnitDiscoveryTests.cs" />
+    <Compile Include="NUnitExecutionTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="DiscoveryTests.cs" />
-    <Compile Include="ExecutionTests.cs" />
-    <Compile Include="FactoryTests.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Scurry.Framework\Scurry.Framework.csproj">
       <Project>{A066013D-E420-4D9D-BF5F-00AC8E907551}</Project>
       <Name>Scurry.Framework</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Scurry.Runtime.NUnit\Scurry.Runtime.NUnit.csproj">
+      <Project>{2413B42E-CE14-4BD2-B8DE-B591C2EF7C3F}</Project>
+      <Name>Scurry.Runtime.NUnit</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Scurry.Runtime.Tests\Scurry.Runtime.Tests.csproj">
+      <Project>{78B4D9DE-EFB3-4597-8992-43B679327FA8}</Project>
+      <Name>Scurry.Runtime.Tests</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Scurry.Runtime\Scurry.Runtime.csproj">
       <Project>{229CA09F-9B7B-4DFE-9108-0FD362238759}</Project>
       <Name>Scurry.Runtime</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
